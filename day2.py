@@ -30,3 +30,8 @@ for command, value in commands:
         aim -= value
 
 print("Part 2:", position * depth)
+
+
+# Commentary
+# I should read the instructions more carefully lol.
+# Nothing tricky with this one.
