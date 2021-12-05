@@ -4,13 +4,6 @@ INPUT = open('5.input').read()
 
 coords = defaultdict(int)
 
-
-def full_range(a, b):
-    if a < b:
-        return range(a, b + 1)
-    return range(a, b - 1, -1)
-
-
 for line in INPUT.split("\n"):
     a, b = line.split(" -> ")
 
