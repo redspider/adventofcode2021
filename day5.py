@@ -1,4 +1,3 @@
-import itertools
 from collections import defaultdict
 
 INPUT = open('5.input').read()
@@ -18,14 +17,8 @@ for line in INPUT.split("\n"):
     x1, y1 = [int(x) for x in a.split(",")]
     x2, y2 = [int(x) for x in b.split(",")]
 
-    x_range = full_range(x1, x2)
-    y_range = full_range(y1, y2)
-
-    if len(x_range) > len(y_range):
-        for (x, y) in zip(x_range, itertools.cycle(y_range)):
-            coords[x, y] += 1
-    else:
-        for (x, y) in zip(itertools.cycle(x_range), y_range):
-            coords[x, y] += 1
+    line_length = max(abs(x1-x2), abs(y1-y2))
+    for i in range(0, line_length+1):
+        coords[x1+i*(x2-x1)/line_length, y1+i*(y2-y1)/line_length] += 1
 
 print("Part 2:", len([y for y in coords.values() if y > 1]))
