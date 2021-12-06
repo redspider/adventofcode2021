@@ -3,7 +3,6 @@ from functools import cache
 #INPUT = """3,4,3,1,2"""
 INPUT = open('6.input').read()
 
-count = 0
 days = 256
 
 
