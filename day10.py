@@ -1,18 +1,4 @@
-INPUT = """[({(<(())[]>[[{[]{<()<>>
-[(()[<>])]({[<{<<[]>>(
-{([(<{}[<>[]}>{[]{[(<()>
-(((({<>}<{<{<>}{[]{[]{}
-[[<[([]))<([[{}[[()]]]
-[{[{({}]{}}([{[{{{}}([]
-{<[[]]>}<{[{[{[]{()[[[]
-[<(<(<(<{}))><([]([]()
-<{([([[(<>()){}]>(<<{{
-<{([{{}}[<[[[<>{}]]]>[]]"""
-
 INPUT = open('10.input').read()
-
-# INPUT = "[[[[<[{[(<{{{({}<>)((){})}((()())[()()])}}><[([((){})]<[()[]]{{}<>}>)[[{[]<>}][([]{})[{}()]]]]>)<{(<"
-
 
 open_to_close = {
     '<': '>',
@@ -43,24 +29,16 @@ class BadLetter(Exception):
 def scan(s):
     stack = []
     for c in s:
-        if stack and c == open_to_close[stack[-1]]:
+        if stack and c == stack[-1]:
             stack.pop()
         elif c in open_to_close.keys():
-            stack.append(c)
+            stack.append(open_to_close[c])
         else:
             raise BadLetter(c)
     return stack
 
 
 answer1 = 0
-for line in INPUT.split("\n"):
-    try:
-        scan(line)
-    except BadLetter as e:
-        answer1 += points[str(e)]
-
-print("Part 1:", answer1)
-
 answers = []
 
 for line in INPUT.split("\n"):
@@ -68,10 +46,12 @@ for line in INPUT.split("\n"):
         line_score = 0
         for c in reversed(scan(line)):
             line_score *= 5
-            line_score += points2[open_to_close[c]]
+            line_score += points2[c]
         answers.append(line_score)
     except BadLetter as e:
-        pass
+        answer1 += points[str(e)]
+
+print("Part 1:", answer1)
 
 ls = list(sorted(answers))
 
