@@ -8,12 +8,7 @@ def solve(n):
 
 
 def solve2(n):
-    x = 2
-    ox = 2
-    while x < n + 1:
-        ox = x
-        x = x * 2
-    return (n - ox) * 2 + 1
+    return (n - 2 ** (n.bit_length() - 1)) * 2 + 1
 
 
 for n in range(2, 100):
