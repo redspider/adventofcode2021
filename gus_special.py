@@ -14,4 +14,6 @@ def solve2(n):
 for n in range(2, 100):
     print(n, solve(n), solve2(n))
 
+print(solve2(1496))
+
 print(solve2(30_000_000_000))
